@@ -1,69 +1,39 @@
+// src/pages/Home.tsx
 import { useState } from 'react';
-import { useTodos } from '../context/TodoContext';
+import { useTasks } from '../context/TodoContext';
+import TaskItem from '../components/TaskItem';
 
-export function Home() {
-  const { todos, addTodo, toggleTodo, toggleFavorite } = useTodos();
-  const [newTodoText, setNewTodoText] = useState('');
+const Home = () => {
+  const [inputValue, setInputValue] = useState('');
+  const { tasks, addTask } = useTasks(); // Consome o estado do contexto
 
-  const handleAddTodo = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (newTodoText.trim()) {
-      addTodo(newTodoText.trim());
-      setNewTodoText('');
+  const handleAddTask = () => {
+    if (inputValue.trim()) {
+      addTask(inputValue);
+      setInputValue('');
     }
   };
 
   return (
-    <div className="container">
-      <header className="header">
-        <h1>React: To-Do List com Favoritos</h1>
-        <div className="nav-link">
-          Favoritos ({todos.filter(todo => todo.isFavorite).length})
-        </div>
-      </header>
-      
-      <main className="main">
-        <form onSubmit={handleAddTodo} className="add-todo-form">
-          <input
-            type="text"
-            value={newTodoText}
-            onChange={(e) => setNewTodoText(e.target.value)}
-            placeholder="Adicionar nova tarefa..."
-            className="todo-input"
-          /> 
-          <button type="submit" className="add-button">
-            ➕+ 
-          </button>
-        </form>
+    <div>
+      <h1>Lista de Tarefas</h1>
+      {/* Formulário para adicionar tarefa [cite: 41] */}
+      <input
+        type="text"
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+        placeholder="Digite uma nova tarefa"
+      />
+      <button onClick={handleAddTask}>Adicionar</button>
 
-        <div className="todos-container">
-          {todos.length === 0 ? (
-            <p className="empty-message">Nenhuma tarefa adicionada ainda.</p>
-          ) : (
-            <ul className="todos-list">
-              {todos.map(todo => (
-                <li key={todo.id} className={`todo-item ${todo.isDone ? 'done' : ''}`}>
-                  <div className="todo-content">
-                    <button
-                      onClick={() => toggleTodo(todo.id)}
-                      className={`todo-checkbox ${todo.isDone ? 'checked' : ''}`}
-                    >
-                      {todo.isDone ? '✅' : '⭕'}
-                    </button>
-                    <span className="todo-text">{todo.text}</span>
-                    <button
-                      onClick={() => toggleFavorite(todo.id)}
-                      className={`favorite-button ${todo.isFavorite ? 'favorited' : ''}`}
-                    >
-                      {todo.isFavorite ? '⭐' : '☆'}
-                    </button>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-      </main>
+      {/* Lista de todas as tarefas [cite: 43] */}
+      <div>
+        {tasks.map(task => (
+          <TaskItem key={task.id} task={task} />
+        ))}
+      </div>
     </div>
   );
-}
+};
+
+export default Home;

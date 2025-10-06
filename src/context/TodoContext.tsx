@@ -1,60 +1,67 @@
-import { createContext, useContext, useState, ReactNode } from 'react';
-import { Todo } from '../types';
+// src/contexts/TasksContext.tsx
+import { createContext, useState, useContext, ReactNode } from 'react';
+import { Task, TasksContextType } from '../types';
 
-interface TodoContextType {
-  todos: Todo[];
-  addTodo: (text: string) => void;
-  toggleTodo: (id: string) => void;
-  toggleFavorite: (id: string) => void;
-  deleteTodo: (id: string) => void;
-}
+// Cria o contexto com um valor padrão
+const TasksContext = createContext<TasksContextType | undefined>(undefined);
 
-const TodoContext = createContext<TodoContextType | undefined>(undefined);
+// Cria o Provedor do Contexto
+export const TasksProvider = ({ children }: { children: ReactNode }) => {
+  const [tasks, setTasks] = useState<Task[]>([]);
+  const [notification, setNotification] = useState<string>(''); // Novo estado
 
-export function TodoProvider({ children }: { children: ReactNode }) {
-  const [todos, setTodos] = useState<Todo[]>([]);
-
-  const addTodo = (text: string) => {
-    const newTodo: Todo = {
-      id: Date.now().toString(),
-      text,
-      isDone: false,
-      isFavorite: false,
-      createdAt: new Date()
+  const addTask = (text: string) => {
+    const newTask: Task = {
+      id: Date.now(), // Usando timestamp como ID único [cite: 33]
+      text: text,
+      isDone: false,  // Valor inicial [cite: 42]
+      isFavorite: false, // Valor inicial [cite: 42]
     };
-    setTodos(prev => [...prev, newTodo]);
+    setTasks(prevTasks => [...prevTasks, newTask]);
   };
 
-  const toggleTodo = (id: string) => {
-    setTodos(prev => prev.map(todo => 
-      todo.id === id ? { ...todo, isDone: !todo.isDone } : todo
-    ));
+  const toggleTaskDone = (id: number) => {
+    setTasks(prevTasks =>
+      prevTasks.map(task =>
+        task.id === id ? { ...task, isDone: !task.isDone } : task
+      )
+    );
   };
 
-  const toggleFavorite = (id: string) => {
-    setTodos(prev => prev.map(todo => 
-      todo.id === id ? { ...todo, isFavorite: !todo.isFavorite } : todo
-    ));
-  };
+  const toggleTaskFavorite = (id: number) => {
+    let taskText = '';
+    setTasks(prevTasks =>
+      prevTasks.map(task => {
+        if (task.id === id) {
+          // Mostra a notificação apenas quando vai de false para true [cite: 59]
+          if (!task.isFavorite) {
+            taskText = task.text;
+          }
+          return { ...task, isFavorite: !task.isFavorite };
+        }
+        return task;
+      })
+    );
 
-  // Deletar tarefa
-  const deleteTodo = (id: string) => {
-    setTodos(prev => prev.filter(todo => todo.id !== id));
+    if (taskText) {
+      setNotification(`Tarefa "${taskText}" adicionada aos favoritos!`); // Mensagem dinâmica [cite: 60]
+    }
   };
 
   return (
-    <TodoContext.Provider value={{ todos, addTodo, toggleTodo, toggleFavorite, deleteTodo }}>
+    <TasksContext.Provider value={{ tasks, addTask, toggleTaskDone, toggleTaskFavorite, notification, setNotification }}>
       {children}
-    </TodoContext.Provider>
+    </TasksContext.Provider>
   );
-}
+};
 
-export function useTodos() {
-  const context = useContext(TodoContext);
+// Hook customizado para facilitar o uso do contexto
+export const useTasks = () => {
+  const context = useContext(TasksContext);
   if (context === undefined) {
-    throw new Error('useTodos must be used within a TodoProvider');
+    throw new Error('useTasks must be used within a TasksProvider');
   }
   return context;
-}
+};
 
 
