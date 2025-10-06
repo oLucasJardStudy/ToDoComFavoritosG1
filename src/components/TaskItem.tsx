@@ -9,19 +9,18 @@ interface TaskItemProps {
 const TaskItem = ({ task }: TaskItemProps) => {
   const { toggleTaskDone, toggleTaskFavorite } = useTasks();
 
-  const taskTextStyle = {
-    textDecoration: task.isDone ? 'line-through' : 'none', // Estilo para tarefa concluída [cite: 47]
-  };
-
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+    <div className="task-item">
       <input
         type="checkbox"
         checked={task.isDone}
         onChange={() => toggleTaskDone(task.id)} // Botão para concluir [cite: 46]
       />
-      <span style={taskTextStyle}>{task.text}</span>
-      <button onClick={() => toggleTaskFavorite(task.id)}> {/* Botão para favoritar [cite: 48] */}
+      <span className={`task-text ${task.isDone ? 'completed' : ''}`}>{task.text}</span>
+      <button 
+        className="favorite-button"
+        onClick={() => toggleTaskFavorite(task.id)} // Botão para favoritar [cite: 48]
+      >
         {task.isFavorite ? '★' : '☆'}
       </button>
     </div>

@@ -15,7 +15,7 @@ const Favorites = () => {
             <TaskItem key={task.id} task={task} />
           ))
         ) : (
-          <p>Nenhuma tarefa favoritada ainda.</p>
+          <p className="empty-message">Nenhuma tarefa favoritada ainda.</p>
         )}
       </div>
     </div>

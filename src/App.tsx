@@ -15,16 +15,18 @@ function App() {
             <header className="header">
               <h1>React: To-Do List com favoritos</h1>
               <nav className="nav-links">
-                <Link to="/" className="nav-link">Home</Link>
-                <Link to="/favoritos" className="nav-link">Favoritos</Link>
+                <Link to="/" className="nav-link">🏠 Home</Link>
+                <Link to="/favoritos" className="nav-link">⭐ Favoritos</Link>
               </nav>
             </header>
             
             <main className="main">
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/favoritos" element={<Favorites />} />
-              </Routes>
+              <div className="content-wrapper">
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/favoritos" element={<Favorites />} />
+                </Routes>
+              </div>
             </main>
           </div>
           <Notification />
