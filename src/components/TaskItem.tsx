@@ -1,3 +1,4 @@
+// Componente para renderizar cada item de tarefa
 import { useTasks } from '../context/TodoContext';
 import { Task } from '../types';
 

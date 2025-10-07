@@ -1,3 +1,4 @@
+// Definições de tipos TypeScript para a aplicação
 export interface Task {
   id: number;
   text: string;

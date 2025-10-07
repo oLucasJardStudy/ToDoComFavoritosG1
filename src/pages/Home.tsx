@@ -1,3 +1,4 @@
+// Página principal com lista de todas as tarefas
 import { useState } from 'react';
 import { useTasks } from '../context/TodoContext';
 import TaskItem from '../components/TaskItem';

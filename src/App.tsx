@@ -1,3 +1,4 @@
+// Componente principal da aplicação
 import { TasksProvider } from './context/TodoContext';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';

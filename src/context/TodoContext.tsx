@@ -1,3 +1,4 @@
+// Context API para gerenciamento global de estado das tarefas
 import { createContext, useState, useContext, ReactNode } from 'react';
 import { Task, TasksContextType } from '../types';
 
