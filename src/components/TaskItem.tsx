@@ -1,4 +1,3 @@
-// src/components/TaskItem.tsx
 import { useTasks } from '../context/TodoContext';
 import { Task } from '../types';
 
@@ -14,14 +13,14 @@ const TaskItem = ({ task }: TaskItemProps) => {
       <input
         type="checkbox"
         checked={task.isDone}
-        onChange={() => toggleTaskDone(task.id)} // Botão para concluir [cite: 46]
+        onChange={() => toggleTaskDone(task.id)}
       />
       <span className={`task-text ${task.isDone ? 'completed' : ''}`}>{task.text}</span>
       <button 
         className="favorite-button"
-        onClick={() => toggleTaskFavorite(task.id)} // Botão para favoritar [cite: 48]
+        onClick={() => toggleTaskFavorite(task.id)}
       >
-        {task.isFavorite ? '★' : '☆'}
+        {task.isFavorite ? 'Favorito' : 'Favoritar'}
       </button>
     </div>
   );

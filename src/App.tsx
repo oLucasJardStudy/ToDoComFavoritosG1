@@ -1,4 +1,3 @@
-// src/App.tsx (ou onde suas rotas estão)
 import { TasksProvider } from './context/TodoContext';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
@@ -15,8 +14,8 @@ function App() {
             <header className="header">
               <h1>React: To-Do List com favoritos</h1>
               <nav className="nav-links">
-                <Link to="/" className="nav-link">🏠 Home</Link>
-                <Link to="/favoritos" className="nav-link">⭐ Favoritos</Link>
+                <Link to="/" className="nav-link">Home</Link>
+                <Link to="/favoritos" className="nav-link">Favoritos</Link>
               </nav>
             </header>
             

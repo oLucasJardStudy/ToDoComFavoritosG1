@@ -1,10 +1,9 @@
-// src/pages/Favorites.tsx
 import { useTasks } from '../context/TodoContext';
 import TaskItem from '../components/TaskItem';
 
 const Favorites = () => {
   const { tasks } = useTasks();
-  const favoriteTasks = tasks.filter(task => task.isFavorite); // Filtra apenas as favoritas [cite: 55]
+  const favoriteTasks = tasks.filter(task => task.isFavorite);
 
   return (
     <div>

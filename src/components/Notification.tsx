@@ -1,4 +1,3 @@
-// src/components/Notification.tsx
 import { useEffect } from 'react';
 import { useTasks } from '../context/TodoContext';
 
@@ -8,12 +7,12 @@ const Notification = () => {
   useEffect(() => {
     if (notification) {
       const timer = setTimeout(() => {
-        setNotification(''); // Limpa a notificação após 3 segundos [cite: 62]
+        setNotification('');
       }, 3000);
 
-      return () => clearTimeout(timer); // Limpa o timer se o componente for desmontado
+      return () => clearTimeout(timer);
     }
-  }, [notification, setNotification]); // O useEffect depende da notificação [cite: 63]
+  }, [notification, setNotification]);
 
   if (!notification) {
     return null;

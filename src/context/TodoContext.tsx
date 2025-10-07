@@ -1,21 +1,18 @@
-// src/contexts/TasksContext.tsx
 import { createContext, useState, useContext, ReactNode } from 'react';
 import { Task, TasksContextType } from '../types';
 
-// Cria o contexto com um valor padrão
 const TasksContext = createContext<TasksContextType | undefined>(undefined);
 
-// Cria o Provedor do Contexto
 export const TasksProvider = ({ children }: { children: ReactNode }) => {
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [notification, setNotification] = useState<string>(''); // Novo estado
+  const [notification, setNotification] = useState<string>('');
 
   const addTask = (text: string) => {
     const newTask: Task = {
-      id: Date.now(), // Usando timestamp como ID único [cite: 33]
+      id: Date.now(),
       text: text,
-      isDone: false,  // Valor inicial [cite: 42]
-      isFavorite: false, // Valor inicial [cite: 42]
+      isDone: false,
+      isFavorite: false,
     };
     setTasks(prevTasks => [...prevTasks, newTask]);
   };
@@ -33,7 +30,6 @@ export const TasksProvider = ({ children }: { children: ReactNode }) => {
     setTasks(prevTasks =>
       prevTasks.map(task => {
         if (task.id === id) {
-          // Mostra a notificação apenas quando vai de false para true [cite: 59]
           if (!task.isFavorite) {
             taskText = task.text;
           }
@@ -44,7 +40,7 @@ export const TasksProvider = ({ children }: { children: ReactNode }) => {
     );
 
     if (taskText) {
-      setNotification(`Tarefa "${taskText}" adicionada aos favoritos!`); // Mensagem dinâmica [cite: 60]
+      setNotification(`Tarefa "${taskText}" adicionada aos favoritos!`);
     }
   };
 
@@ -55,7 +51,6 @@ export const TasksProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-// Hook customizado para facilitar o uso do contexto
 export const useTasks = () => {
   const context = useContext(TasksContext);
   if (context === undefined) {
@@ -63,5 +58,3 @@ export const useTasks = () => {
   }
   return context;
 };
-
-

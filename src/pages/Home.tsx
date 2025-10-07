@@ -1,11 +1,10 @@
-// src/pages/Home.tsx
 import { useState } from 'react';
 import { useTasks } from '../context/TodoContext';
 import TaskItem from '../components/TaskItem';
 
 const Home = () => {
   const [inputValue, setInputValue] = useState('');
-  const { tasks, addTask } = useTasks(); // Consome o estado do contexto
+  const { tasks, addTask } = useTasks();
 
   const handleAddTask = () => {
     if (inputValue.trim()) {
@@ -17,7 +16,6 @@ const Home = () => {
   return (
     <div>
       <h1>Lista de Tarefas</h1>
-      {/* Formulário para adicionar tarefa [cite: 41] */}
       <div className="add-task-form">
         <input
           type="text"
@@ -29,7 +27,6 @@ const Home = () => {
         <button onClick={handleAddTask}>Adicionar</button>
       </div>
 
-      {/* Lista de todas as tarefas [cite: 43] */}
       <div>
         {tasks.length === 0 ? (
           <p className="empty-message">Nenhuma tarefa adicionada ainda.</p>

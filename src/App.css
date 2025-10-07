@@ -1,196 +1,153 @@
 .app {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #f5f5f5;
+  padding: 20px;
 }
 
 .container {
-  max-width: 800px;
+  max-width: 600px;
   margin: 0 auto;
-  padding: 20px;
-  min-height: 100vh;
 }
 
 .header {
   text-align: center;
   margin-bottom: 30px;
-  padding: 30px 20px;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .header h1 {
   color: #333;
-  font-size: 2.2rem;
-  font-weight: 700;
-  margin-bottom: 20px;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-size: 1.8rem;
+  margin-bottom: 15px;
 }
 
 .nav-links {
   display: flex;
   justify-content: center;
-  gap: 15px;
-  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .nav-link {
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: #007bff;
   color: white;
-  padding: 12px 24px;
-  border-radius: 25px;
+  padding: 10px 20px;
+  border-radius: 5px;
   text-decoration: none;
-  font-weight: 600;
   font-size: 14px;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  transition: background 0.2s;
 }
 
 .nav-link:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-}
-
-.main {
-  display: flex;
-  flex-direction: column;
+  background: #0056b3;
 }
 
 .content-wrapper {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 16px;
-  padding: 30px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .add-task-form {
   display: flex;
-  gap: 15px;
-  margin-bottom: 30px;
-  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
 .add-task-form input {
   flex: 1;
-  padding: 15px 20px;
-  border: 2px solid #e1e5e9;
-  border-radius: 12px;
-  font-size: 16px;
-  outline: none;
-  transition: all 0.3s ease;
-  background: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
 }
 
 .add-task-form input:focus {
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  outline: none;
+  border-color: #007bff;
 }
 
 .add-task-form button {
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: #28a745;
   color: white;
   border: none;
-  padding: 15px 25px;
-  border-radius: 12px;
-  font-size: 16px;
-  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 14px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  white-space: nowrap;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  transition: background 0.2s;
 }
 
 .add-task-form button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  background: #218838;
 }
 
 .task-item {
   display: flex;
   align-items: center;
-  gap: 15px;
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 12px;
-  margin-bottom: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  gap: 10px;
+  padding: 12px;
+  background: #f9f9f9;
+  border-radius: 5px;
+  margin-bottom: 8px;
+  border: 1px solid #eee;
 }
 
 .task-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  background: #f0f0f0;
 }
 
 .task-text {
   flex: 1;
-  font-size: 16px;
+  font-size: 14px;
   color: #333;
-  font-weight: 500;
 }
 
 .task-text.completed {
   text-decoration: line-through;
-  opacity: 0.6;
-  color: #666;
+  color: #999;
 }
 
 .favorite-button {
-  background: none;
+  background: #ffc107;
   border: none;
-  font-size: 20px;
+  font-size: 12px;
   cursor: pointer;
-  padding: 8px;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  color: #ffc107;
+  padding: 6px 12px;
+  border-radius: 4px;
+  transition: background 0.2s;
+  color: #333;
 }
 
 .favorite-button:hover {
-  background: rgba(255, 193, 7, 0.1);
-  transform: scale(1.1);
+  background: #e0a800;
 }
 
 .empty-message {
   text-align: center;
-  color: #666;
+  color: #999;
   font-style: italic;
-  margin: 40px 0;
-  font-size: 18px;
+  margin: 20px 0;
 }
 
 @media (max-width: 768px) {
-  .container {
-    padding: 15px;
-  }
-  
-  .header {
-    flex-direction: column;
-    gap: 15px;
-    text-align: center;
+  .app {
+    padding: 10px;
   }
   
   .header h1 {
     font-size: 1.5rem;
   }
   
-  .add-todo-form {
+  .add-task-form {
     flex-direction: column;
   }
   
-  .todo-item {
+  .task-item {
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
-  }
-  
-  .todo-content {
-    width: 100%;
   }
 }

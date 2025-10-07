@@ -1,9 +1,8 @@
-// src/types.ts
 export interface Task {
-  id: number;       // [cite: 33]
-  text: string;     // [cite: 35]
-  isDone: boolean;  // [cite: 36]
-  isFavorite: boolean; // [cite: 37]
+  id: number;
+  text: string;
+  isDone: boolean;
+  isFavorite: boolean;
 }
 
 export interface TasksContextType {
@@ -14,5 +13,3 @@ export interface TasksContextType {
   notification: string;
   setNotification: (message: string) => void;
 }
-
-
